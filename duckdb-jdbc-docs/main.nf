@@ -15,3 +15,5 @@ channel
                // columns: 'item, value, count',
                db: 'my-db',
                setup: "CREATE TABLE IF NOT EXISTS items (item VARCHAR, value DECIMAL(10, 2), count INTEGER)" )
+
+channel.fromQuery('SELECT * FROM generate_series(2000)', db: 'my-db').view()
