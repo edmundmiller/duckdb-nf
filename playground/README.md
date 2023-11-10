@@ -1,0 +1,1 @@
+https://github.com/mehd-io/duckdb-playground-tutorial
