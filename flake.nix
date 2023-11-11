@@ -29,11 +29,11 @@
           modules = [
             {
               # https://devenv.sh/reference/options/
-              packages = [pkgs.hello];
+              packages = [pkgs.duckdb];
 
-              enterShell = ''
-                hello
-              '';
+              # enterShell = ''
+              #   hello
+              # '';
             }
           ];
         };
