@@ -1,9 +1,7 @@
-// include { fromQuery } from 'plugin/nf-sqldb'
+params.netflix = 'https://github.com/mehd-io/duckdb-playground-tutorial/raw/main/data/netflix_daily_top_10.csv'
 
-// channel.fromQuery('select alpha, delta, omega from SAMPLE', db: 'foo').view()
-include { sqlInsert } from 'plugin/nf-sqldb'
+include { fromQuery } from 'plugin/nf-sqldb'
 
 channel
-    .of('Hello','world!')
-    .map( it -> tuple(it, it.length()) )
-    .sqlInsert( into: 'SAMPLE', columns: 'NAME, LEN', db: 'foo', setup: 'CREATE TABLE SAMPLE(NAME VARCHAR, LEN INTEGER);' )
+    .fromQuery("select Title from read_csv_auto('netflix_daily_top_10.csv')", db: 'foo')
+    | view
