@@ -1,5 +1,13 @@
+include { sqlInsert } from 'plugin/nf-sqldb'
 // -- create a table
 // CREATE TABLE ducks AS SELECT 3 AS age, 'mandarin' AS breed;
+channel
+    .of(tuple('3', "mandarin"))
+    .sqlInsert( into: 'ducks',
+               columns: 'age, breed',
+               db: 'playground',
+               setup: "CREATE TABLE ducks(age INTEGER, breed VARCHAR);")
+
 // -- display tables
 // SHOW tables;
 // -- select * from ducks
