@@ -12,10 +12,32 @@ workflow poorman {
            """
     )
     DUCKDB_S3(link)
-    DUCKDB_NATIVE()
-
+    DUCKDB_NATIVE(file(link))
 }
-DUCKDB_S3
+
+// Let DuckDB Read from s3
+process DUCKDB_S3 {
+
+    input:
+    val link // s3://blah/blah.csv
+
+    script:
+    """
+    duckdb "SELECT * FROM read_csv('$link', filename=true);"
+    """
+}
+
+// Stage the file for DuckDB with Nextflow
+process DUCKDB_NATIVE {
+
+    input:
+    path csv // blah.csv
+
+    script:
+    """
+    duckdb "SELECT * FROM read_csv('$csv', filename=true);"
+    """
+}
 
 process DUCKDB {
 
