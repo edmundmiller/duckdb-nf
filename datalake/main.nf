@@ -1,4 +1,4 @@
-link = "s3://blah/blah.csv"
+link = ["s3://blah/blah.csv", "s3://blah/blah2.csv"]
 workflow poorman {
     DuckDB("""
            set s3_access_key_id='test';
