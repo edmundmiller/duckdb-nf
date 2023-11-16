@@ -12,10 +12,11 @@ workflow poorman {
            """
     )
     DUCKDB_S3(link)
-    DUCKDB_NATIVE(file(link))
+    DUCKDB_NATIVE(file(link), 100)
 }
 
 // Let DuckDB Read from s3
+// This is powerful because DuckDB can pull only the parts it needs in the parquet files
 process DUCKDB_S3 {
 
     input:
@@ -32,10 +33,18 @@ process DUCKDB_NATIVE {
 
     input:
     path csv // blah.csv
+    val greaterthan
+
 
     script:
     """
-    duckdb "SELECT * FROM read_csv('$csv', filename=true);"
+    duckdb "SELECT * FROM read_csv('$link', filename=true);
+    SELECT region FROM sales GROUP BY region HAVING sum(amount) > $greaterthan;"
+    """
+
+    // Could really just be:
+    """
+    cat $csv
     """
 }
 
