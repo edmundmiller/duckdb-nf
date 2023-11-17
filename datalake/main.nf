@@ -70,4 +70,20 @@ process DUCKDB {
 }
 
 
+process CUSTOMERS_TABLE {
+
+    input:
+    file query
+    val stg_customers
+    val stg_orders
+    val stg_payments
+
+
+    script:
+    """
+    duckdb -c ".read $query"
+    """
+
+}
+
 // TODO https://duckdb.org/docs/guides/data_viewers/youplot.html
