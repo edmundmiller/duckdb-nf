@@ -66,3 +66,6 @@ process DUCKDB {
     """
 
 }
+
+
+// TODO https://duckdb.org/docs/guides/data_viewers/youplot.html
