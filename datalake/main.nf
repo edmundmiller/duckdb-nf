@@ -1,6 +1,7 @@
-link = ["s3://blah/blah.csv", "s3://blah/blah2.csv"]
-workflow poorman {
-    DuckDB("""
+customers = file("https://raw.githubusercontent.com/dbt-labs/jaffle_shop/main/seeds/raw_customers.csv")
+orders = file("https://raw.githubusercontent.com/dbt-labs/jaffle_shop/main/seeds/raw_orders.csv")
+payments = file("https://raw.githubusercontent.com/dbt-labs/jaffle_shop/main/seeds/raw_payments.csv")
+
            set s3_access_key_id='test';
            set s3_secret_access_key='test';
            set s3_endpoint='localhost:4566';
