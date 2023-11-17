@@ -12,8 +12,12 @@ payments = file("https://raw.githubusercontent.com/dbt-labs/jaffle_shop/main/see
            SHOW tables;
            """
     )
-    DUCKDB_S3(link)
-    DUCKDB_NATIVE(file(link), 100)
+    CUSTOMERS_TABLE(
+        file("$projectDir/sql/customers_table.sql"),
+        customers,
+        orders,
+        payments
+    )
 }
 
 // Let DuckDB Read from s3
