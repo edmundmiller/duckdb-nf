@@ -5,3 +5,5 @@ tmp/
 
 .nextflow*
 .devenv/
+# Managed by devenv
+.pre-commit-config.yaml

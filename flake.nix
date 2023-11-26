@@ -31,9 +31,13 @@
               # https://devenv.sh/reference/options/
               packages = [pkgs.duckdb];
 
-              # enterShell = ''
-              #   hello
-              # '';
+              pre-commit.hooks = {
+                alejandra.enable = true;
+                editorconfig-checker.enable = true;
+                mdsh.enable = true;
+                prettier.enable = true;
+                shfmt.enable = true;
+              };
             }
           ];
         };
