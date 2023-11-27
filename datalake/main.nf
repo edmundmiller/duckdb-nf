@@ -34,6 +34,7 @@ process DUCKDB_S3 {
     duckdb "SELECT * FROM read_csv('$link', filename=true);"
     """
 }
+// TODO Test with fusion
 
 // Stage the file for DuckDB with Nextflow
 process DUCKDB_NATIVE {
@@ -45,11 +46,12 @@ process DUCKDB_NATIVE {
 
     script:
     """
-    duckdb "SELECT * FROM read_csv('$link', filename=true);
+    duckdb "SELECT * FROM read_csv('$csv', filename=true);
     SELECT region FROM sales GROUP BY region HAVING sum(amount) > $greaterthan;"
     """
 
     // Could really just be:
+    stub:
     """
     cat $csv
     """
