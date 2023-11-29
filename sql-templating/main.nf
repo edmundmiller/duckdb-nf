@@ -8,8 +8,6 @@ process DUCKDB_SQL_FILE {
     script:
     """
     cat $csv | duckdb -c ".read $query_file"
-    # This file is in bin/!
-    cat $csv | duckdb :memory: -c ".read bin_example.sql"
     """
 }
 
