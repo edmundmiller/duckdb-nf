@@ -7,3 +7,4 @@ tmp/
 .devenv/
 # Managed by devenv
 .pre-commit-config.yaml
+**/work/
