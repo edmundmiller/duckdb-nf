@@ -1,0 +1,3 @@
+#!/usr/bin/env duckdb -json -f
+
+FROM range(10);
